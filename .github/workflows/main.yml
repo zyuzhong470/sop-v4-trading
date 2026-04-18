@@ -13,7 +13,7 @@ jobs:
 
       - name: Initialize Project Structure
         run: |
-          # 修正后的指令：--force 放在最后，确保补齐 Android 目录
+          # 修正参数顺序：把 --force 放在 create 后面，. 放在最后
           flutter create --force --platforms android .
           flutter pub get
 
@@ -29,4 +29,3 @@ jobs:
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-
