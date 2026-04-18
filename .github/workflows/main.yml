@@ -11,10 +11,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Force Initialize Project Structure
+      - name: Initialize Project Structure
         run: |
-          # 这一步非常重要：它会补齐你缺失的 android 目录和配置文件
-          flutter create . --force --platforms android
+          # 修正后的指令：--force 放在最后，确保补齐 Android 目录
+          flutter create --force --platforms android .
           flutter pub get
 
       - name: Build APK
