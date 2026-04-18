@@ -25,7 +25,7 @@ class _SopPageState extends State<SopPage> {
     var sign = base64.encode(crypto.Hmac(crypto.sha256, utf8.encode(apiSecret)).convert(utf8.encode(ts + "POST" + "/api/v5/trade/order" + jsonEncode({"instId":"DOGE-USDT-SWAP","tdMode":"cross","side":side,"ordType":"market","sz":"100"}))).bytes);
     
     try {
-      final res = await http.post(Uri.parse("https://www.okx.com/api/v5/trade/order"), headers: {"OK-ACCESS-KEY":apiKey,"OK-ACCESS-SIGN":sign,"OK-ACCESS-TIMESTAMP":ts,"OK-ACCESS-PASSPHRASE":passphrase,"Content-Type":"application/json"}, body: jsonEncode({"instId":"DOGE-USDT-SWAP","tdMode":"cross","side":side,"ordType":"market","sz":"100"}));
+      final res = await http.post(Uri.parse("https://aws.okx.com/api/v5/trade/order), headers: {"OK-ACCESS-KEY":apiKey,"OK-ACCESS-SIGN":sign,"OK-ACCESS-TIMESTAMP":ts,"OK-ACCESS-PASSPHRASE":passphrase,"Content-Type":"application/json"}, body: jsonEncode({"instId":"DOGE-USDT-SWAP","tdMode":"cross","side":side,"ordType":"market","sz":"100"}));
       setState(() => log = res.body);
     } catch (e) {
       setState(() => log = "错误: $e");
