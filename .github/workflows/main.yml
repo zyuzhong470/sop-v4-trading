@@ -5,16 +5,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter pub get
-      - run: |
+
+      - name: Force Initialize Project Structure
+        run: |
+          # 这一步非常重要：它会补齐你缺失的 android 目录和配置文件
+          flutter create . --force --platforms android
+          flutter pub get
+
+      - name: Build APK
+        run: |
           flutter build apk --release \
           --dart-define=API_KEY=${{ secrets.API_KEY }} \
           --dart-define=API_SECRET=${{ secrets.API_SECRET }} \
           --dart-define=PASSPHRASE=${{ secrets.PASSPHRASE }}
-      - uses: actions/upload-artifact@v4
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: release-apk
           path: build/app/outputs/flutter-apk/app-release.apk
