@@ -11,10 +11,10 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Initialize Project Structure
+      - name: Initialize Project
         run: |
-          # 修正参数顺序：把 --force 放在 create 后面，. 放在最后
-          flutter create --force --platforms android .
+          # 放弃复杂参数，直接用最基础的指令初始化
+          flutter create .
           flutter pub get
 
       - name: Build APK
