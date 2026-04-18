@@ -1,0 +1,13 @@
+name: sop_v4_trading
+description: SOP v4.0 Terminal
+version: 1.0.0+1
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  http: ^1.1.0        # 解决 http 报错
+  crypto: ^3.0.3      # 解决 sha256 报错
+flutter:
+  uses-material-design: true
+
